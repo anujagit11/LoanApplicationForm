@@ -3,6 +3,7 @@ package com.finalpro.appform.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +36,11 @@ public class LoanApplicationController
 		return new ResponseEntity<CarLoanApplication>(cd,HttpStatus.OK);
 	  
 	}
+  
+//    @PatchMapping("/updateData")
+//    public ResponseEntity<T>
+  
+  
 }
 	
 

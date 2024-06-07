@@ -4,11 +4,12 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.finalpro.appform.dto.CibilDetails;
+import com.finalpro.appform.dto.Enquiry;
 import com.finalpro.appform.model.AllPersonalDocs;
 import com.finalpro.appform.model.CarLoanApplication;
 import com.finalpro.appform.repo.AppFormRepository;
@@ -19,6 +20,8 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
 
 	@Autowired
 	AppFormRepository apf;
+	@Autowired
+	RestTemplate rs;
 
 	@Override
 	public CarLoanApplication saveCarAppFormData(String formjson, MultipartFile addressProof, MultipartFile panCard,
@@ -33,6 +36,7 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
             if (ca.getAllpersonalDocs() == null) {
                 ca.setAllpersonalDocs(new AllPersonalDocs());
             }
+            
 
             AllPersonalDocs allPersonalDocs = ca.getAllpersonalDocs();
 
@@ -44,6 +48,15 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
             allPersonalDocs.setSignature(signature.getBytes());
             allPersonalDocs.setBankCheque(bankCheque.getBytes());
             allPersonalDocs.setSalarySlips(salarySlips.getBytes());
+            
+            String url="http://localhost:8081/getpan/"+ca.getPanCardNo();
+            Enquiry e =rs.getForObject(url, Enquiry.class);
+            CibilDetails c = new CibilDetails();
+            
+            c.setCibilId(e.getCibil().getCibilId());
+            c.setCibilScore(e.getCibil().getCibilScore());
+            c.setIsApplicable(e.getCibil().getIsApplicable());
+            c.setRemark(e.getCibil().getRemark());;
 			
 			return apf.save(ca);
 

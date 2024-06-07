@@ -7,23 +7,15 @@ import lombok.Data;
 @Data
 @Entity
 public class LocalAddress {
+	
 	@Id
-
-
-private int localAddressId;
-private String areaname;
-private String cityname;
-private String district;
-private String state;
-private long pincode;
-private int houseNumber;
-private String streetName;
+	private int localAddressId;
+	private String areaname;
+	private String cityname;
+	private String district;
+	private String state;
+	private long pincode;
+	private int houseNumber;
+	private String streetName;
 
 }
-
-
-
-
-
-
-
