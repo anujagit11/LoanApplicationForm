@@ -15,7 +15,7 @@ private String agreementDate;
  private double totalAmount;
  private String bankName;
  private long accountNumber;
- private String IFSCCode;
+ private String iFSCCode;
  private String accountType;
  private double transferAmount;
  private String paymentStatus;

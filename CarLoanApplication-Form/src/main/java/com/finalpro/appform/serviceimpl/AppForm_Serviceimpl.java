@@ -23,10 +23,13 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
 	@Override
 	public CarLoanApplication saveCarAppFormData(String formjson, MultipartFile addressProof, MultipartFile panCard,
 			MultipartFile incomeTax, MultipartFile adharCard, MultipartFile photo, MultipartFile signature,
-			MultipartFile bankCheque, MultipartFile salarySlips) {
+			MultipartFile bankCheque, MultipartFile salarySlips)
+			 {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			CarLoanApplication ca = mapper.readValue(formjson, CarLoanApplication.class);
+			
+			   
             if (ca.getAllpersonalDocs() == null) {
                 ca.setAllpersonalDocs(new AllPersonalDocs());
             }
@@ -50,4 +53,6 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
 		return null;
 
 	}
+
+	
 }

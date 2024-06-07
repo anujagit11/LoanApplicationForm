@@ -29,7 +29,7 @@ public class LoanApplicationController
 	  System.out.println(signature.getOriginalFilename());
 	  System.out.println(bankCheque.getOriginalFilename());
 	  System.out.println(salarySlips.getOriginalFilename());
-	  
+
 	  CarLoanApplication cd= afs.saveCarAppFormData(formjson,addressProof,panCard,incomeTax,adharCard,photo,signature,bankCheque,salarySlips);   
 	  
 		return new ResponseEntity<CarLoanApplication>(cd,HttpStatus.OK);
