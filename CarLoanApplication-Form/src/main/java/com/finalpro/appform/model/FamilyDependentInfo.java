@@ -15,4 +15,5 @@ public class FamilyDependentInfo {
 	private String dependentMember;
 	private double familyIncome;
 
+	
 }
