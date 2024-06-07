@@ -29,7 +29,7 @@ public class CarLoanApplication {
 	private AccountDetails accountDetails;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	private AllPersonalDocs allPersonalDocs;
+	private AllPersonalDocs allpersonalDocs;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private CustomerAddress customerAddress;
@@ -43,7 +43,7 @@ public class CarLoanApplication {
 	@OneToOne(cascade = CascadeType.ALL)
 	private GuarantorDetails guarantorDetails;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Ledger ledger;
 
 	@OneToOne(cascade = CascadeType.ALL)

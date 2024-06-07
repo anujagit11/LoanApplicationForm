@@ -7,18 +7,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
-@Data
+
 @Entity
+@Setter
+@Getter
 public class AllPersonalDocs {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int documentId;
+	
 	@Lob
 	@Column(length = 999999999)
 	private byte[] addressProof;
+	
 	@Lob
 	@Column(length = 999999999)
 	private byte[] panCard;
@@ -43,7 +49,7 @@ public class AllPersonalDocs {
 	private byte[] bankCheque;
 
 	@Lob
-	@Column
+	@Column(length = 999999999)
 	private byte[] salarySlips;
 
 }
