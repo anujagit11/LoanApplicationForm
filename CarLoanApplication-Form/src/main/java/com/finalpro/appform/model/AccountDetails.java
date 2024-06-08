@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @Entity
 public class AccountDetails {
+	
 	@Id
 	private int accountId;
 	private String accountType;
