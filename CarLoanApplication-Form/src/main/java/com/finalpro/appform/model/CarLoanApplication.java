@@ -2,7 +2,7 @@ package com.finalpro.appform.model;
 
 
 
-import com.finalpro.appform.dto.CibilDetails;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -28,7 +28,8 @@ public class CarLoanApplication {
 	private Double customerTotalLoanRequired;
 	private String loanStatus;
 
-	//private CibilDetails cbil;
+	private Enquiry en;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private AccountDetails accountDetails;
 
