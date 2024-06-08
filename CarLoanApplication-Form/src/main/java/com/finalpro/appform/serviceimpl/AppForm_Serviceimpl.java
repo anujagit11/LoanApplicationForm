@@ -34,43 +34,12 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			CarLoanApplication ca = mapper.readValue(formjson, CarLoanApplication.class);
-<<<<<<< HEAD
-			
+
 			   
             if (ca.getAllpersonalDocs() == null) {
                 ca.setAllpersonalDocs(new AllPersonalDocs());
             }
-            
-=======
->>>>>>> branch 'main' of https://github.com/anujagit11/LoanApplicationForm.git
-
-			if (ca.getAllpersonalDocs() == null) {
-				ca.setAllpersonalDocs(new AllPersonalDocs());
-			}
-
-<<<<<<< HEAD
-            allPersonalDocs.setAddressProof(addressProof.getBytes());
-            allPersonalDocs.setPanCard(panCard.getBytes());
-            allPersonalDocs.setIncomeTax(incomeTax.getBytes());
-            allPersonalDocs.setAdharCard(adharCard.getBytes());
-            allPersonalDocs.setPhoto(photo.getBytes());
-            allPersonalDocs.setSignature(signature.getBytes());
-            allPersonalDocs.setBankCheque(bankCheque.getBytes());
-            allPersonalDocs.setSalarySlips(salarySlips.getBytes());
-            
-            String url="http://localhost:8081/getpan/"+ca.getPanCardNo();
-            Enquiry e =rs.getForObject(url, Enquiry.class);
-            
-            
-           // Enquiry ee=new Enquiry();
-           ca.getEn().setCibil(e.getCibil());
-           //// c.setCibilId(e.getCibil().getCibilId());
-         //   c.setCibilScore(e.getCibil().getCibilScore());
-         ////   c.setIsApplicable(e.getCibil().getIsApplicable());;
-          //  c.setRemark(e.getCibil().getRemark());;
-			
-=======
-			AllPersonalDocs allPersonalDocs = ca.getAllpersonalDocs();
+            AllPersonalDocs allPersonalDocs = ca.getAllpersonalDocs();
 
 			allPersonalDocs.setAddressProof(addressProof.getBytes());
 			allPersonalDocs.setPanCard(panCard.getBytes());
@@ -81,7 +50,28 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
 			allPersonalDocs.setBankCheque(bankCheque.getBytes());
 			allPersonalDocs.setSalarySlips(salarySlips.getBytes());
 
->>>>>>> branch 'main' of https://github.com/anujagit11/LoanApplicationForm.git
+
+	         String url="http://localhost:8081/getpan/"+ca.getPanCardNo();
+             Enquiry e =rs.getForObject(url, Enquiry.class);
+              System.out.println(e.getCibil());
+             System.out.println(e.getCibil().getCibilScore());
+             if(ca.getCibill()==null)
+             {
+            	 ca.setCibill(new CibilDetails() );
+             }
+             
+             ca.getCibill().setCibilId(e.getCibil().getCibilId());
+             ca.getCibill().setCibilScore(e.getCibil().getCibilScore());
+             ca.getCibill().setIsApplicable(e.getCibil().getIsApplicable());
+             ca.getCibill().setRemark(e.getCibil().getRemark());
+             
+
+// Enquiry ee=new Enquiry();
+//ca.getEn().setCibil(e.getCibil());
+//// c.setCibilId(e.getCibil().getCibilId());
+//   c.setCibilScore(e.getCibil().getCibilScore());
+////   c.setIsApplicable(e.getCibil().getIsApplicable());;
+//  c.setRemark(e.getCibil().getRemark());;
 			return apf.save(ca);
 
 		} catch (IOException ie) {

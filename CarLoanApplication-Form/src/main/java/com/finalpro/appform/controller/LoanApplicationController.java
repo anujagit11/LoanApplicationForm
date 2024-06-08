@@ -7,12 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.PatchMapping;
-=======
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
->>>>>>> branch 'main' of https://github.com/anujagit11/LoanApplicationForm.git
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,16 +48,6 @@ public class LoanApplicationController {
 		return new ResponseEntity<CarLoanApplication>(cd, HttpStatus.OK);
 
 	}
-<<<<<<< HEAD
-  
-//    @PatchMapping("/updateData")
-//    public ResponseEntity<T>
-  
-  
-}
-	
-=======
->>>>>>> branch 'main' of https://github.com/anujagit11/LoanApplicationForm.git
 
 	@GetMapping("/getAll")
 	public ResponseEntity<List<CarLoanApplication>> getAllloanData() {
