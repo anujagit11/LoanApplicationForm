@@ -1,5 +1,7 @@
 package com.finalpro.appform.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -9,6 +11,8 @@ import lombok.Data;
 public class CustomerVarification {
 	@Id
 	private int verificationID;
+
+    @CreationTimestamp
 	private String verificationDate;
 	private String status;
 	private String remarks;

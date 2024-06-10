@@ -1,7 +1,5 @@
 package com.finalpro.appform.controller;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.finalProject.dto.CustomerDto;
 import com.finalpro.appform.model.CarLoanApplication;
 import com.finalpro.appform.service.AppFormServiceI;
 
@@ -52,7 +51,7 @@ public class LoanApplicationController {
 	@GetMapping("/getAll")
 	public ResponseEntity<List<CarLoanApplication>> getAllloanData() {
 		List<CarLoanApplication> list = (List<CarLoanApplication>) afs.getAllloanData();
-		return new ResponseEntity<List<CarLoanApplication>>(list,HttpStatus.OK);
+		return new ResponseEntity<List<CarLoanApplication>>(list, HttpStatus.OK);
 	}
 
 	@GetMapping("/getSingleloandata/{customerId}")
@@ -60,6 +59,20 @@ public class LoanApplicationController {
 			@PathVariable("customerId") int customerId) {
 		CarLoanApplication user = afs.getSingleloandata(customerId);
 		return new ResponseEntity<CarLoanApplication>(user, HttpStatus.OK);
+	}
+
+	@PatchMapping("/updateData/{customerId}")
+	public ResponseEntity<CarLoanApplication> update(@RequestPart("customerfield") String formjson,
+			@RequestPart("docaddress") MultipartFile addressProof, @RequestPart("pan") MultipartFile panCard,
+			@RequestPart("income") MultipartFile incomeTax, @RequestPart("adhar") MultipartFile adharCard,
+			@RequestPart("photo") MultipartFile photo, @RequestPart("sign") MultipartFile signature,
+			@RequestPart("cheque") MultipartFile bankCheque, @RequestPart("salarySlips") MultipartFile salarySlips,
+			@PathVariable int customerId) {
+
+		CarLoanApplication cd = afs.saveUpdateData(formjson, addressProof, panCard, incomeTax, adharCard, photo,
+				signature, bankCheque, salarySlips, customerId);
+
+		return new ResponseEntity<CarLoanApplication>(cd, HttpStatus.OK);
 	}
 
 }

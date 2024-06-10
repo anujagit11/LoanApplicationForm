@@ -1,15 +1,8 @@
 package com.finalpro.appform.model;
 
-
-
-
-
-import org.hibernate.annotations.Cascade;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 
@@ -30,9 +23,9 @@ public class CarLoanApplication {
 	private Double customerTotalLoanRequired;
 	private String loanStatus;
 
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private CibilDetails cibill;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private AccountDetails accountDetails;
 
@@ -62,9 +55,5 @@ public class CarLoanApplication {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private SanctionLetter sanctionLetter;
-
-	
-
-	
 
 }
