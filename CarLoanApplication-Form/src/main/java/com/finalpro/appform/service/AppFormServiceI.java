@@ -27,7 +27,11 @@ public interface AppFormServiceI {
 
 
 
-	//CarLoanApplication verifyApplication(int customerId, CustomerVarification cv);
+	CarLoanApplication verifyApplication(int customerId, CustomerVarification cv);
+
+
+
+	
 
 	
 
