@@ -20,7 +20,7 @@ import com.finalpro.appform.model.AllPersonalDocs;
 import com.finalpro.appform.model.CarLoanApplication;
 import com.finalpro.appform.model.CibilDetails;
 import com.finalpro.appform.model.CustomerVarification;
-
+import com.finalpro.appform.model.SanctionLetter;
 import com.finalpro.appform.repo.AppFormRepository;
 import com.finalpro.appform.service.AppFormServiceI;
 
@@ -149,22 +149,40 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
 	@Override
 	public CarLoanApplication verifyApplication(int customerId, CustomerVarification cv) {
 
-		//CarLoanApplication cr = new CarLoanApplication();
-		//if (cr.getCustomerVarification() == null) {
-		//	cr.setCustomerVarification(new CustomerVarification());
+		// CarLoanApplication cr = new CarLoanApplication();
+		// if (cr.getCustomerVarification() == null) {
+		// cr.setCustomerVarification(new CustomerVarification());
 
 		Optional<CarLoanApplication> op = apf.findById(customerId);
 		if (op.isPresent()) {
 			CarLoanApplication cc = op.get();
-			
+
 			cv.setVerificationDate(new Date());
 			cc.setCustomerVarification(cv);
 
 			apf.save(cc);
 			return cc;
 		} else {
-			 throw new CustomerIdIsNotFoundException("customer is not register");
+			throw new CustomerIdIsNotFoundException("customer is not register");
 		}
 
+	}
+
+	@Override
+	public void save(SanctionLetter sqd, int customerId) {
+		Optional<CarLoanApplication> opcust = apf.findById(customerId);
+		if (opcust.isPresent()) {
+			CarLoanApplication cd = opcust.get();
+			sqd.setSanctionId(cd.getCustomerId());
+			sqd.setSanctionDate(new Date());
+			sqd.setStatus("Created");
+			sqd.setTermsCondition(
+					"The Sanction is valid till 15 days you can accept or reject this sanction if no replay recived then it will consider as rejected by applicant ");
+
+			cd.setSanctionLetter(sqd);
+			apf.save(cd);
+		} else {
+			throw new CustomerIdIsNotFoundException("invalid customer id");
+		}
 	}
 }

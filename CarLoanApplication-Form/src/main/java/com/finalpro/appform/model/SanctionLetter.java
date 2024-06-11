@@ -1,5 +1,8 @@
 package com.finalpro.appform.model;
 
+
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -9,7 +12,7 @@ import lombok.Data;
 public class SanctionLetter {
 	@Id
 	private int sanctionId;
-	private String sanctionDate;
+	private Date sanctionDate;
 	private String applicantName;
 	private double contactDetails;
 	private String producthomeEquity;
@@ -22,5 +25,6 @@ public class SanctionLetter {
 	private String remarks;
 	private String termsCondition;
 	private String status;
+	
 
 }

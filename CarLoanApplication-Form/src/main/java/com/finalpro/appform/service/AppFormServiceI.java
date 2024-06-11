@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.finalpro.appform.model.CarLoanApplication;
 import com.finalpro.appform.model.CustomerVarification;
+import com.finalpro.appform.model.SanctionLetter;
 
 public interface AppFormServiceI {
 
@@ -28,6 +29,10 @@ public interface AppFormServiceI {
 
 
 	CarLoanApplication verifyApplication(int customerId, CustomerVarification cv);
+
+
+
+	void save(SanctionLetter sqd, int customerId);
 
 
 

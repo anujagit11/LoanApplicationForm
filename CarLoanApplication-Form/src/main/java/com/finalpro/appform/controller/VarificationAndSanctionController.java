@@ -7,12 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.finalProject.dto.CustomerDto;
+import com.finalpro.appform.dto.CustomerDto;
 import com.finalpro.appform.model.CarLoanApplication;
 import com.finalpro.appform.model.CustomerVarification;
+import com.finalpro.appform.model.SanctionLetter;
 import com.finalpro.appform.service.AppFormServiceI;
 
 @RestController
@@ -30,6 +32,11 @@ public class VarificationAndSanctionController
 	    	    return new ResponseEntity<CustomerDto>(c,HttpStatus.OK);
           }
 	   
-	   
+	     @PutMapping("/SanctionDetails/{customerId}")
+	 	public ResponseEntity<CarLoanApplication> updateSingleSanctionDetails(@RequestBody SanctionLetter sqd,@PathVariable int customerId)
+	 	{
+	 	 ap.save(sqd,customerId);
+	 		      return new ResponseEntity<CarLoanApplication>(HttpStatus.OK);
+	 	}
 }
 	

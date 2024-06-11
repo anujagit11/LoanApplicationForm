@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.finalProject.dto.CustomerDto;
+import com.finalpro.appform.dto.CustomerDto;
 import com.finalpro.appform.model.CarLoanApplication;
 import com.finalpro.appform.service.AppFormServiceI;
 

@@ -1,4 +1,4 @@
-package com.finalProject.dto;
+package com.finalpro.appform.dto;
 
 import java.util.Date;
 
