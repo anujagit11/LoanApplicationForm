@@ -1,6 +1,7 @@
 package com.finalpro.appform.serviceimpl;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finalProject.model.Enquiry;
 import com.finalpro.appform.CustomException.CustomerIdIsNotFoundException;
+import com.finalpro.appform.CustomException.LoanApplicationNotFoundException;
 import com.finalpro.appform.controller.LoanApplicationController;
 import com.finalpro.appform.model.AllPersonalDocs;
 import com.finalpro.appform.model.CarLoanApplication;
@@ -147,31 +149,21 @@ public class AppForm_Serviceimpl implements AppFormServiceI {
 	@Override
 	public CarLoanApplication verifyApplication(int customerId, CustomerVarification cv) {
 
-		CarLoanApplication cr = new CarLoanApplication();
-		if (cr.getCustomerVarification() == null) {
-			cr.setCustomerVarification(new CustomerVarification());
-
-		}
+		//CarLoanApplication cr = new CarLoanApplication();
+		//if (cr.getCustomerVarification() == null) {
+		//	cr.setCustomerVarification(new CustomerVarification());
 
 		Optional<CarLoanApplication> op = apf.findById(customerId);
 		if (op.isPresent()) {
 			CarLoanApplication cc = op.get();
-			CustomerVarification cdd = cc.getCustomerVarification();
-			// cv.setVerificationID(id);
-			// cv.setStatus(cv.getStatus());
-			// cv.setRemarks(cv.getRemarks());
-			// Random rd = new Random();
-			// int id =rd.nextInt(200);
-			// cc.getCustomerVarification().setVerificationID(id);
-			//////cc.getCustomerVarification().setStatus(cv.getStatus());
-			//cc.getCustomerVarification().setRemarks(cv.getRemarks());
 			
-			cc.setCustomerVarification(cdd);
+			cv.setVerificationDate(new Date());
+			cc.setCustomerVarification(cv);
 
 			apf.save(cc);
 			return cc;
 		} else {
-			return null;
+			 throw new CustomerIdIsNotFoundException("customer is not register");
 		}
 
 	}

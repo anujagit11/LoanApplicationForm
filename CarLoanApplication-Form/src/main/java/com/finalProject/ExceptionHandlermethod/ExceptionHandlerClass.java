@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.finalProject.dto.CustomerDto;
 import com.finalpro.appform.CustomException.CustomerIdIsNotFoundException;
+import com.finalpro.appform.CustomException.LoanApplicationNotFoundException;
 
 
 
@@ -21,10 +22,17 @@ public class ExceptionHandlerClass {
 	@ExceptionHandler(CustomerIdIsNotFoundException.class)
 	public ResponseEntity<CustomerDto> handleuser(CustomerIdIsNotFoundException ee)
 	{
-		CustomerDto respo=new CustomerDto();
-		respo.setMsg(ee.getMessage());
-		respo.setTimestamp(new Date());
+		CustomerDto respo=new CustomerDto(ee.getMessage(),new Date());
 		
-		return new ResponseEntity<CustomerDto>(respo,HttpStatus.OK);
+		
+		return new ResponseEntity<CustomerDto>(respo,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(LoanApplicationNotFoundException.class)
+	public ResponseEntity<CustomerDto> verify(LoanApplicationNotFoundException ll)
+	{
+		CustomerDto cc=new CustomerDto(ll.getMessage(),new Date());
+		
+		return new ResponseEntity<CustomerDto>(cc,HttpStatus.NOT_FOUND);	
 	}
 }

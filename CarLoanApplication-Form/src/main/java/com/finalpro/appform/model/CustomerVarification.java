@@ -1,6 +1,7 @@
 package com.finalpro.appform.model;
 
-import org.hibernate.annotations.CreationTimestamp;
+import java.util.Date;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,12 +12,13 @@ import lombok.Data;
 @Data
 @Entity
 public class CustomerVarification {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int verificationID;
 
-    @CreationTimestamp
-	private String verificationDate;
+    
+	private Date verificationDate;
 	private String status;
 	private String remarks;
 
